@@ -3,11 +3,12 @@ import {
   Users, BookOpen, TrendingUp, Award, Calendar, 
   MessageCircle, Activity, Zap, Target, Star,
   ChevronRight, Code, Brain, Sparkles, CheckCircle,
-  ArrowUp, Settings, LogOut,
+  Clock, ArrowUp, Bell, Settings, LogOut,
   X, Send, Play, Trophy, Flame, Heart, Plus,
   Edit, Trash2, Search, UserPlus, BookMarked, 
-  BarChart, DollarSign, Eye, Save, Users2, Building,
-  AlertCircle
+  BarChart, DollarSign, Info, Eye, Mail, Phone, 
+  MapPin, Save, Users2, GraduationCap, Building,
+  TrendingDown, AlertCircle
 } from 'lucide-react';
 
 // ============================================================================
@@ -283,16 +284,8 @@ const CustomAlert = ({ isOpen, onClose, title, message, icon: Icon, type = 'info
 };
 
 // Componente de Chat IA reutilizable
-const initialMessagesByRole = {
-  coordinator: { role: 'assistant', content: '¡Hola! Soy tu asistente IA para coordinación. Puedo ayudarte con gestión de estudiantes, maestros y grupos. ¿En qué te ayudo hoy? 📊' },
-  director: { role: 'assistant', content: '¡Bienvenido! Soy tu asistente de análisis ejecutivo. Puedo ayudarte con reportes, métricas y estrategias. ¿Qué información necesitas? 📈' },
-  teacher: { role: 'assistant', content: '¡Hola Maestro! Soy tu asistente de enseñanza. Puedo generar ejercicios, darte sugerencias pedagógicas y ayudarte a gestionar tu clase. ¿Qué necesitas? 👨‍🏫' },
-  student: { role: 'assistant', content: '¡Hola! 👋 Soy tu AI Tutor. Estoy aquí para ayudarte a aprender programación de forma divertida. ¿Qué quieres aprender hoy? 🚀' },
-  parent: { role: 'assistant', content: '¡Hola! Soy el asistente para padres. Puedo ayudarte a entender el progreso de tu hijo/a y darte consejos para apoyarlo. ¿En qué te ayudo? 👨‍👩‍👧' }
-};
-
 const AIChatWidget = ({ role = 'student', onClose }) => {
-  const [messages, setMessages] = useState([{ id: 1, ...initialMessagesByRole[role] }]);
+  const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
 
   // Respuestas según el rol
@@ -339,8 +332,17 @@ const AIChatWidget = ({ role = 'student', onClose }) => {
     ]
   };
 
+  // Mensaje inicial según el rol
+  const initialMessages = {
+    coordinator: { role: 'assistant', content: '¡Hola! Soy tu asistente IA para coordinación. Puedo ayudarte con gestión de estudiantes, maestros y grupos. ¿En qué te ayudo hoy? 📊' },
+    director: { role: 'assistant', content: '¡Bienvenido! Soy tu asistente de análisis ejecutivo. Puedo ayudarte con reportes, métricas y estrategias. ¿Qué información necesitas? 📈' },
+    teacher: { role: 'assistant', content: '¡Hola Maestro! Soy tu asistente de enseñanza. Puedo generar ejercicios, darte sugerencias pedagógicas y ayudarte a gestionar tu clase. ¿Qué necesitas? 👨‍🏫' },
+    student: { role: 'assistant', content: '¡Hola! 👋 Soy tu AI Tutor. Estoy aquí para ayudarte a aprender programación de forma divertida. ¿Qué quieres aprender hoy? 🚀' },
+    parent: { role: 'assistant', content: '¡Hola! Soy el asistente para padres. Puedo ayudarte a entender el progreso de tu hijo/a y darte consejos para apoyarlo. ¿En qué te ayudo? 👨‍👩‍👧' }
+  };
+
   useEffect(() => {
-    setMessages([{ id: 1, ...initialMessagesByRole[role] }]);
+    setMessages([{ id: 1, ...initialMessages[role] }]);
   }, [role]);
 
   const handleSendMessage = () => {
