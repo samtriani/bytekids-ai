@@ -10,16 +10,6 @@ export interface AppUser {
 }
 
 const USERS: Record<string, { password: string; user: AppUser }> = {
-  'fernando.miranda': {
-    password: '4dmin.Edomex#',
-    user: {
-      username: 'fernando.miranda',
-      displayName: 'Fernando Miranda',
-      role: 'admin',
-      initials: 'FM',
-      panels: ['alumno', 'maestro', 'padre', 'director'],
-    }
-  },
   'samuel.partida': {
     password: '4dmin.Edomex#',
     user: {
