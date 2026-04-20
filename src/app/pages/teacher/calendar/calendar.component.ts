@@ -8,7 +8,7 @@ import { ShellComponent, NavItem } from '../../../shared/shell/shell.component';
 })
 export class CalendarComponent {
   navItems: NavItem[] = [{ label:'Mi Panel', icon:'🏠', route:'/teacher' },{ label:'Mis Salones', icon:'🏫', route:'/teacher/classrooms', badge:3 },{ label:'Alumnos', icon:'👨‍🎓', route:'/teacher/students' },{ label:'Crear Contenido', icon:'📝', route:'/teacher/create' },{ label:'Asistente IA', icon:'🤖', route:'/teacher/ai-assistant', badge:'✨' },{ label:'Reportes', icon:'📊', route:'/teacher/reports' },{ label:'Calendario', icon:'📅', route:'/teacher/calendar' },{ label:'Mensajes', icon:'💬', route:'/teacher/messages', badge:5 }];
-  monthName = 'Marzo 2025'; days = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  monthName = 'Marzo 2026'; days = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
   weeks: (number|null)[][] = []; today = 12; selectedDay = 12;
   events: Record<number,any[]> = {
     5:[{ title:'Examen Python 4°A', time:'10:00', color:'#7B1034', type:'exam' }],
