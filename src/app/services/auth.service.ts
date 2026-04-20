@@ -11,12 +11,22 @@ export interface AppUser {
 
 const USERS: Record<string, { password: string; user: AppUser }> = {
   'samuel.partida': {
-    password: '4dmin.Edomex#',
+    password: '4dmin.Sinaloa#',
     user: {
       username: 'samuel.partida',
       displayName: 'Samuel Partida',
       role: 'admin',
       initials: 'SP',
+      panels: ['alumno', 'maestro', 'padre', 'director'],
+    }
+  },
+  'monserrat.navarro': {
+    password: '4dmin.Edomex#',
+    user: {
+      username: 'monserrat.navarro',
+      displayName: 'Monserrat Navarro',
+      role: 'admin',
+      initials: 'MN',
       panels: ['alumno', 'maestro', 'padre', 'director'],
     }
   }
