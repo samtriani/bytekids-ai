@@ -1,15 +1,14 @@
 /* ══════════════════════════════════════════════════════════════════
-   BYTEKIDS ACADEMY — Identidad Visual Gobierno Estado de México
-   Paleta oficial: Guinda #7A1535 · Blanco #FFFFFF · Gris #F2F3F5
+   BYTEKIDS ACADEMY — Identidad Visual
+   Paleta: Guinda #7A1535 · Blanco #FFFFFF · Gris #F2F3F5
    Tipografía: Nunito (legible, amigable para educación)
-   Diseño: institucional + educativo = sobrio pero motivador
 ══════════════════════════════════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@400;500;600;700;800&display=swap');
 
 /* ── TOKENS ──────────────────────────────────────────────────────── */
 :root {
-  /* Paleta Edomex */
+  /* Paleta ByteKids */
   --guinda:        #7A1535;
   --guinda-dk:     #5C0F27;
   --guinda-md:     #9B1A42;
@@ -105,7 +104,7 @@ input,select,textarea { font-family:inherit; }
   color:var(--tx3); letter-spacing:.02em;
 }
 
-/* Línea institucional Edomex */
+/* Línea institucional */
 .edomex-stripe {
   display:flex; gap:0;
   height:3px;
@@ -457,7 +456,7 @@ input,select,textarea { font-family:inherit; }
 
 /* ═══════════════════════════════════════════════════════════════════
    COMPAT LAYER — aliases para páginas del alumno (sistema v4 → v5)
-   Mapea variables --bk-* al sistema Edomex actual
+   Mapea variables --bk-* al sistema ByteKids actual
    ═══════════════════════════════════════════════════════════════════ */
 :root {
   /* Layout */
@@ -473,7 +472,7 @@ input,select,textarea { font-family:inherit; }
   --bk-text-muted:   var(--tx3);
   --bk-text-dim:     var(--tx4);
 
-  /* Colores de acento → redirigidos a paleta Edomex */
+  /* Colores de acento → redirigidos a paleta ByteKids */
   --bk-purple:       var(--guinda);
   --bk-purple-light: var(--guinda-md);
   --bk-blue:         var(--info);
@@ -483,7 +482,7 @@ input,select,textarea { font-family:inherit; }
   --bk-yellow-light: #c99a2a;
   --bk-pink:         var(--guinda-md);
 
-  /* Old Edomex aliases from teacher calendar/messages */
+  /* Aliases de compatibilidad */
   --em-guinda:       var(--guinda);
   --em-guinda-pale:  var(--guinda-lt);
   --bg-base:         var(--bg);

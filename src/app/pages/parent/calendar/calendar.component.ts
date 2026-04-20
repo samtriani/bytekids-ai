@@ -8,7 +8,7 @@ const NAV: NavItem[] = [{label:"Mi Panel",icon:"🏠",route:"/parent"},{label:"M
 })
 export class CalendarComponent {
   navItems = NAV;
-  monthName='Marzo 2025'; days=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  monthName='Marzo 2026'; days=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
   weeks:(number|null)[][]=[];today=12;selectedDay=12;
   events:Record<number,any[]>={
     10:[{title:'Entrega proyecto Axel',time:'15:00',color:'#7A1535',who:'Axel'}],

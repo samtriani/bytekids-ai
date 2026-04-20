@@ -11,7 +11,7 @@ export interface AppUser {
 
 const USERS: Record<string, { password: string; user: AppUser }> = {
   'samuel.partida': {
-    password: '4dmin.Sinaloa#',
+    password: '4dmin.Edomex#',
     user: {
       username: 'samuel.partida',
       displayName: 'Samuel Partida',
