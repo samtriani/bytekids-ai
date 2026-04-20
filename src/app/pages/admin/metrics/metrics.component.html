@@ -1,0 +1,25 @@
+<app-shell role="admin" userName="Director Pérez" userAvatar="DP"
+  [navItems]="navItems" pageTitle="Métricas institucionales"></app-shell>
+<div class="page-wrap">
+  <div class="ph">
+    <div class="ph-left"><h1>Métricas institucionales</h1><p>Análisis profundo del desempeño de la academia Ciclo 2024-2025</p></div>
+    <a routerLink="/admin/ai-reports" class="btn btn-primary">🤖 Reporte IA completo</a>
+  </div>
+
+  <div class="g4 mb14">
+    <div class="kpi gold"><div class="kpi-ico">📈</div><div><div class="kpi-val">+37%</div><div class="kpi-lbl">Crecimiento anual</div><div class="kpi-dl up">62 → 85 alumnos</div></div></div>
+    <div class="kpi green"><div class="kpi-ico">✅</div><div><div class="kpi-val">1,840</div><div class="kpi-lbl">Misiones esta semana</div><div class="kpi-dl up">↑ +15% vs anterior</div></div></div>
+    <div class="kpi"><div class="kpi-ico">⭐</div><div><div class="kpi-val">87%</div><div class="kpi-lbl">Retención anual</div><div class="kpi-dl up">Meta: 85% ✓</div></div></div>
+    <div class="kpi red"><div class="kpi-ico">🤖</div><div><div class="kpi-val">2,400+</div><div class="kpi-lbl">Consultas Tutor IA</div><div class="kpi-dl flat">Este mes</div></div></div>
+  </div>
+
+  <div class="g2 mb14">
+    <div class="card"><div class="card-h"><span class="card-title">Crecimiento de alumnos — 2025</span></div><div class="card-p" style="padding-top:10px"><div style="height:190px"><canvas #enrollC></canvas></div></div></div>
+    <div class="card"><div class="card-h"><span class="card-title">Engagement por materia</span></div><div class="card-p" style="padding-top:10px"><div style="height:190px"><canvas #engC></canvas></div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-h"><span class="card-title">Rendimiento por salón — últimos 6 meses</span></div>
+    <div class="card-p" style="padding-top:10px"><div style="height:210px"><canvas #perfC></canvas></div></div>
+  </div>
+</div>

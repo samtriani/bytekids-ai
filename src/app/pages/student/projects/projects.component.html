@@ -1,0 +1,56 @@
+<app-shell role="student" userName="Axel Partida" userAvatar="AP" [navItems]="navItems"></app-shell>
+<div class="projects-page fade-in-up">
+  <div class="page-header"><h1>💻 Mis Proyectos</h1><p>Crea, comparte y muestra lo que puedes construir</p></div>
+
+  <div class="section-title">📂 Mis proyectos</div>
+  <div class="projects-grid" style="margin-bottom:28px">
+    @for (p of myProjects; track p.title) {
+      <div class="project-card">
+        <div class="pc-header">
+          <div class="pc-icon" [style.background]="p.color+'18'">{{ p.icon }}</div>
+          <span class="pc-status" [class]="p.status==='Completado'?'done':'active'">{{ p.status }}</span>
+        </div>
+        <h3 class="pc-title">{{ p.title }}</h3>
+        <span class="pc-subject" [style.color]="p.color">{{ p.subject }}</span>
+        <p class="pc-desc">{{ p.desc }}</p>
+        <div class="pc-footer">
+          <span class="pc-xp">+{{ p.xp }} XP</span>
+          <span class="pc-date">{{ p.date }}</span>
+        </div>
+        <button class="bk-btn" style="width:100%;justify-content:center;margin-top:10px" [style.background]="p.color">
+          {{ p.status==='Completado' ? '👁️ Ver proyecto' : '▶ Continuar' }}
+        </button>
+      </div>
+    }
+
+    <!-- New project card -->
+    <div class="project-card new-card" [routerLink]="'/student/ai-tutor'">
+      <div class="new-icon">➕</div>
+      <p class="new-text">Crear nuevo proyecto</p>
+      <p class="new-sub">El Tutor IA te ayuda a elegir y diseñar</p>
+    </div>
+  </div>
+
+  <div class="section-title">💡 Ideas de proyectos sugeridos por IA</div>
+  <div class="ideas-grid">
+    @for (p of ideaProjects; track p.title) {
+      <div class="idea-card">
+        <div class="ic-left">
+          <div class="ic-icon" [style.background]="p.color+'18'">{{ p.icon }}</div>
+          <div>
+            <div class="ic-title">{{ p.title }}</div>
+            <div class="ic-subject" [style.color]="p.color">{{ p.subject }}</div>
+          </div>
+        </div>
+        <div class="ic-body">
+          <p class="ic-desc">{{ p.desc }}</p>
+        </div>
+        <div class="ic-right">
+          <span class="ic-diff" [class]="p.difficulty.toLowerCase()">{{ p.difficulty }}</span>
+          <span class="ic-xp">+{{ p.xp }} XP</span>
+          <button class="bk-btn primary" style="font-size:.76rem;padding:6px 12px">Iniciar 🚀</button>
+        </div>
+      </div>
+    }
+  </div>
+</div>

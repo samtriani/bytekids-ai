@@ -1,0 +1,8 @@
+.toolbar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+.view-toggle { display:flex; margin-left:auto; border:1px solid var(--border); border-radius:var(--r2); overflow:hidden; }
+.vt-btn { padding:5px 12px; background:transparent; border:none; color:var(--tx3); font-size:.76rem; font-weight:700; cursor:pointer; font-family:inherit; transition:all .14s; }
+.vt-btn.active { background:var(--guinda); color:#fff; }
+.row-warn td { background:var(--danger-lt) !important; }
+.stu-card { transition:all .14s; }
+.stu-card:hover { box-shadow:var(--sh2); transform:translateY(-2px); }
+.sc-top { display:flex; align-items:center; gap:8px; margin-bottom:4px; }
