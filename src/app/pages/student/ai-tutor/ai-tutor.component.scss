@@ -179,3 +179,33 @@
   from { opacity: 0; transform: translateX(-50%) translateY(20px) scale(.8); }
   to   { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
 }
+
+/* ── Responsive ─────────────────────────────────── */
+@media (max-width: 1100px) {
+  .at-layout { grid-template-columns: 1fr 240px; }
+  .at-layout.has-workspace { grid-template-columns: 360px 1fr; }
+}
+
+@media (max-width: 860px) {
+  /* Chat + workspace se apilan verticalmente */
+  .at-layout,
+  .at-layout.has-workspace {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+  /* En mobile el workspace va arriba, el chat abajo */
+  .workspace-panel { order: -1; }
+  .ws-editor { min-height: 220px; }
+  .chat-container { min-height: 340px; }
+
+  /* Banner de misión en columna */
+  .mission-banner { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .mb-complete-btn, .mb-back-btn { width: 100%; }
+}
+
+@media (max-width: 600px) {
+  .ai-tutor-page { padding: 14px 14px !important; }
+  .at-header { flex-wrap: wrap; gap: 8px; }
+  .at-title { font-size: 1rem; }
+  .ws-editor { font-size: .75rem; min-height: 180px; }
+}

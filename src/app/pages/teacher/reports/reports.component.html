@@ -2,18 +2,22 @@
 <div class="page-wrap">
   <div class="ph">
     <div class="ph-left"><h1>Reportes — Salón 4°A</h1><p>Análisis de rendimiento del período seleccionado</p></div>
-    <div class="ph-right">
-      <select class="select" [(ngModel)]="period" style="width:auto;padding:6px 10px">
+    <div class="ph-right" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <select class="select" [(ngModel)]="period" (ngModelChange)="onPeriodChange()" style="width:auto;padding:6px 10px">
         @for (p of periods; track p) { <option>{{ p }}</option> }
       </select>
+      <button class="btn btn-outline" (click)="exportPDF()">📄 Exportar PDF</button>
+      <button class="btn btn-ghost" (click)="sendToDirector()">📨 Enviar al Director</button>
       <a routerLink="/teacher/ai-assistant" class="btn btn-primary">🤖 Análisis IA</a>
     </div>
   </div>
 
+  @if (toast) { <div class="alert alert-ok" style="margin-bottom:14px">{{ toast }}</div> }
+
   <div class="g4 mb14">
     <div class="kpi"><div class="kpi-ico">👨‍🎓</div><div><div class="kpi-val">22</div><div class="kpi-lbl">Alumnos 4°A</div></div></div>
-    <div class="kpi gold"><div class="kpi-ico">📈</div><div><div class="kpi-val">70%</div><div class="kpi-lbl">Promedio salón</div><div class="kpi-dl up">↑ +5% este mes</div></div></div>
-    <div class="kpi green"><div class="kpi-ico">✅</div><div><div class="kpi-val">248</div><div class="kpi-lbl">Misiones totales</div><div class="kpi-dl up">↑ +42 esta sem.</div></div></div>
+    <div class="kpi gold"><div class="kpi-ico">📈</div><div><div class="kpi-val">{{ kpis.avg }}</div><div class="kpi-lbl">Promedio salón</div></div></div>
+    <div class="kpi green"><div class="kpi-ico">✅</div><div><div class="kpi-val">{{ kpis.missions }}</div><div class="kpi-lbl">Misiones totales</div><div class="kpi-dl up">↑ {{ kpis.trend }}</div></div></div>
     <div class="kpi red"><div class="kpi-ico">⚠️</div><div><div class="kpi-val">3</div><div class="kpi-lbl">Necesitan apoyo</div></div></div>
   </div>
 
