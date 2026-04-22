@@ -22,6 +22,16 @@ const USERS: Record<string, { password: string; user: AppUser }> = {
       panels: ['alumno', 'maestro', 'padre', 'director'],
     }
   },
+  'profesor.invitado': {
+    password: 'ByteKids#',
+    user: {
+      username: 'profesor.invitado',
+      displayName: 'Profesor Invitado',
+      role: 'admin',
+      initials: 'SP',
+      panels: ['alumno', 'maestro', 'padre', 'director'],
+    }
+  },
   'yamileth': {
     password: '4dmin.ByteKids#',
     user: {
