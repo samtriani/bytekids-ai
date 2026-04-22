@@ -17,14 +17,20 @@
           <span class="pc-xp">+{{ p.xp }} XP</span>
           <span class="pc-date">{{ p.date }}</span>
         </div>
-        <button class="bk-btn" style="width:100%;justify-content:center;margin-top:10px" [style.background]="p.color">
-          {{ p.status==='Completado' ? '👁️ Ver proyecto' : '▶ Continuar' }}
-        </button>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <button class="bk-btn" style="flex:1;justify-content:center;background:var(--surface2);color:var(--tx2);border:1px solid var(--border)"
+            (click)="openProject(p)">
+            🔍 Detalles
+          </button>
+          <button class="bk-btn" style="flex:1;justify-content:center" [style.background]="p.color" (click)="continueProject(p)">
+            {{ p.status==='Completado' ? '✨ Mejorar' : '▶ Continuar' }}
+          </button>
+        </div>
       </div>
     }
 
     <!-- New project card -->
-    <div class="project-card new-card" [routerLink]="'/student/ai-tutor'">
+    <div class="project-card new-card" (click)="newProject()" style="cursor:pointer">
       <div class="new-icon">➕</div>
       <p class="new-text">Crear nuevo proyecto</p>
       <p class="new-sub">El Tutor IA te ayuda a elegir y diseñar</p>
@@ -48,9 +54,39 @@
         <div class="ic-right">
           <span class="ic-diff" [class]="p.difficulty.toLowerCase()">{{ p.difficulty }}</span>
           <span class="ic-xp">+{{ p.xp }} XP</span>
-          <button class="bk-btn primary" style="font-size:.76rem;padding:6px 12px">Iniciar 🚀</button>
+          <button class="bk-btn primary" style="font-size:.76rem;padding:6px 12px" (click)="startIdea(p)">Iniciar 🚀</button>
         </div>
       </div>
     }
   </div>
 </div>
+
+<!-- Modal de detalle -->
+@if (selectedProject) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-box" (click)="$event.stopPropagation()">
+      <div class="modal-header" [style.background]="selectedProject.color+'15'">
+        <div class="modal-icon" [style.background]="selectedProject.color+'25'">{{ selectedProject.icon }}</div>
+        <div>
+          <div class="modal-title">{{ selectedProject.title }}</div>
+          <div class="modal-subject" [style.color]="selectedProject.color">{{ selectedProject.subject }}</div>
+        </div>
+        <button class="modal-close" (click)="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">{{ selectedProject.desc }}</p>
+        <div class="modal-checklist">
+          @for (d of selectedProject.details; track d) {
+            <div class="mc-item">{{ d }}</div>
+          }
+        </div>
+        <div class="modal-footer">
+          <span class="pc-xp">+{{ selectedProject.xp }} XP</span>
+          <button class="bk-btn" [style.background]="selectedProject.color" (click)="continueProject(selectedProject); closeModal()">
+            {{ selectedProject.status==='Completado' ? '✨ Mejorar con IA' : '▶ Continuar con IA' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}

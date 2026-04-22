@@ -61,7 +61,13 @@ export type Role = 'student' | 'teacher' | 'parent' | 'admin';
     <div class="topbar-right">
       <a routerLink="/portal" class="tb-portal-btn">⊞ Cambiar panel</a>
       <div class="tb-icon">🔔<span class="tb-badge"></span></div>
-      <div class="tb-av">{{ userAvatar }}</div>
+      <div class="tb-user">
+        <div class="tb-av">{{ userAvatar }}</div>
+        <span class="tb-username">{{ userName }}</span>
+      </div>
+      <button class="tb-logout" (click)="logout()" title="Cerrar sesión">
+        Salir <span>→</span>
+      </button>
     </div>
   </header>
   `

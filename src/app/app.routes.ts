@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
+import { roleGuard } from './guards/role.guard';
 import { LoginComponent } from './pages/login/login.component';
 import { PortalComponent } from './pages/portal/portal.component';
 import { LandingComponent } from './pages/landing/landing.component';
@@ -42,56 +43,58 @@ import { AiReportsComponent }                 from './pages/admin/ai-reports/ai-
 import { SubjectsComponent }                  from './pages/admin/subjects/subjects.component';
 import { MetricsComponent }                   from './pages/admin/metrics/metrics.component';
 
-const GUARDED = { canActivate: [authGuard] };
+const AUTH   = [authGuard];
+const STUDENT = [authGuard, roleGuard(['alumno'])];
+const TEACHER = [authGuard, roleGuard(['maestro'])];
+const PARENT  = [authGuard, roleGuard(['padre'])];
+const ADMIN   = [authGuard, roleGuard(['director'])];
 
 export const routes: Routes = [
   // Public
   { path: 'login',  component: LoginComponent },
   { path: '',       redirectTo: 'login', pathMatch: 'full' },
 
-  // Portal (role selector) — guarded
-  { path: 'portal', component: PortalComponent, ...GUARDED },
+  // Portal (role selector)
+  { path: 'portal',  component: PortalComponent,  canActivate: AUTH },
+  { path: 'landing', component: LandingComponent, canActivate: AUTH },
 
-  // Legacy landing
-  { path: 'landing', component: LandingComponent, ...GUARDED },
+  // Student routes
+  { path: 'student',              component: StudentDashboardComponent, canActivate: STUDENT },
+  { path: 'student/missions',     component: MissionsComponent,         canActivate: STUDENT },
+  { path: 'student/progress',     component: ProgressComponent,         canActivate: STUDENT },
+  { path: 'student/achievements', component: AchievementsComponent,     canActivate: STUDENT },
+  { path: 'student/ai-tutor',     component: AiTutorComponent,          canActivate: STUDENT },
+  { path: 'student/projects',     component: ProjectsComponent,         canActivate: STUDENT },
+  { path: 'student/roblox',       component: RobloxComponent,           canActivate: STUDENT },
+  { path: 'student/community',    component: CommunityComponent,        canActivate: STUDENT },
 
-  // Student routes — guarded
-  { path: 'student',              component: StudentDashboardComponent, ...GUARDED },
-  { path: 'student/missions',     component: MissionsComponent,         ...GUARDED },
-  { path: 'student/progress',     component: ProgressComponent,         ...GUARDED },
-  { path: 'student/achievements', component: AchievementsComponent,     ...GUARDED },
-  { path: 'student/ai-tutor',     component: AiTutorComponent,          ...GUARDED },
-  { path: 'student/projects',     component: ProjectsComponent,         ...GUARDED },
-  { path: 'student/roblox',       component: RobloxComponent,           ...GUARDED },
-  { path: 'student/community',    component: CommunityComponent,        ...GUARDED },
+  // Teacher routes
+  { path: 'teacher',               component: TeacherDashboardComponent, canActivate: TEACHER },
+  { path: 'teacher/classrooms',    component: TClassrooms,               canActivate: TEACHER },
+  { path: 'teacher/students',      component: TStudents,                 canActivate: TEACHER },
+  { path: 'teacher/create',        component: CreateContentComponent,    canActivate: TEACHER },
+  { path: 'teacher/ai-assistant',  component: TAiAssist,                 canActivate: TEACHER },
+  { path: 'teacher/reports',       component: ReportsComponent,          canActivate: TEACHER },
+  { path: 'teacher/calendar',      component: TCalendar,                 canActivate: TEACHER },
+  { path: 'teacher/messages',      component: TMessages,                 canActivate: TEACHER },
 
-  // Teacher routes — guarded
-  { path: 'teacher',               component: TeacherDashboardComponent, ...GUARDED },
-  { path: 'teacher/classrooms',    component: TClassrooms,               ...GUARDED },
-  { path: 'teacher/students',      component: TStudents,                 ...GUARDED },
-  { path: 'teacher/create',        component: CreateContentComponent,    ...GUARDED },
-  { path: 'teacher/ai-assistant',  component: TAiAssist,                 ...GUARDED },
-  { path: 'teacher/reports',       component: ReportsComponent,          ...GUARDED },
-  { path: 'teacher/calendar',      component: TCalendar,                 ...GUARDED },
-  { path: 'teacher/messages',      component: TMessages,                 ...GUARDED },
+  // Parent routes
+  { path: 'parent',                component: ParentDashboardComponent,  canActivate: PARENT },
+  { path: 'parent/children',       component: ChildrenComponent,         canActivate: PARENT },
+  { path: 'parent/progress',       component: PProgress,                 canActivate: PARENT },
+  { path: 'parent/achievements',   component: PAchiev,                   canActivate: PARENT },
+  { path: 'parent/messages',       component: PMessages,                 canActivate: PARENT },
+  { path: 'parent/calendar',       component: PCalendar,                 canActivate: PARENT },
+  { path: 'parent/ai-assistant',   component: PAiAssist,                 canActivate: PARENT },
 
-  // Parent routes — guarded
-  { path: 'parent',                component: ParentDashboardComponent,  ...GUARDED },
-  { path: 'parent/children',       component: ChildrenComponent,         ...GUARDED },
-  { path: 'parent/progress',       component: PProgress,                 ...GUARDED },
-  { path: 'parent/achievements',   component: PAchiev,                   ...GUARDED },
-  { path: 'parent/messages',       component: PMessages,                 ...GUARDED },
-  { path: 'parent/calendar',       component: PCalendar,                 ...GUARDED },
-  { path: 'parent/ai-assistant',   component: PAiAssist,                 ...GUARDED },
-
-  // Admin routes — guarded
-  { path: 'admin',                 component: AdminDashboardComponent,   ...GUARDED },
-  { path: 'admin/classrooms',      component: AClassrooms,               ...GUARDED },
-  { path: 'admin/teachers',        component: TeachersComponent,         ...GUARDED },
-  { path: 'admin/students',        component: AStudents,                 ...GUARDED },
-  { path: 'admin/ai-reports',      component: AiReportsComponent,        ...GUARDED },
-  { path: 'admin/subjects',        component: SubjectsComponent,         ...GUARDED },
-  { path: 'admin/metrics',         component: MetricsComponent,          ...GUARDED },
+  // Admin routes
+  { path: 'admin',                 component: AdminDashboardComponent,   canActivate: ADMIN },
+  { path: 'admin/classrooms',      component: AClassrooms,               canActivate: ADMIN },
+  { path: 'admin/teachers',        component: TeachersComponent,         canActivate: ADMIN },
+  { path: 'admin/students',        component: AStudents,                 canActivate: ADMIN },
+  { path: 'admin/ai-reports',      component: AiReportsComponent,        canActivate: ADMIN },
+  { path: 'admin/subjects',        component: SubjectsComponent,         canActivate: ADMIN },
+  { path: 'admin/metrics',         component: MetricsComponent,          canActivate: ADMIN },
 
   { path: '**', redirectTo: 'login' }
 ];

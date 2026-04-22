@@ -223,6 +223,25 @@ input,select,textarea { font-family:inherit; }
   font-weight:800; font-size:.66rem;
   border:1px solid var(--guinda-border);
 }
+.tb-user {
+  display:flex; align-items:center; gap:7px;
+  padding:3px 9px 3px 4px;
+  border-radius:var(--r2);
+  border:1px solid var(--border);
+  background:var(--surface2);
+}
+.tb-username {
+  font-size:.78rem; font-weight:700; color:var(--tx2);
+}
+.tb-logout {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:5px 12px; border-radius:var(--r2);
+  font-size:.75rem; font-weight:700;
+  color:var(--guinda); background:var(--guinda-lt);
+  border:1px solid var(--guinda-border);
+  cursor:pointer; transition:all .14s; font-family:inherit;
+}
+.tb-logout:hover { background:var(--guinda); color:#fff; }
 
 /* ── CONTENT AREA ────────────────────────────────────────────────── */
 .page-wrap {

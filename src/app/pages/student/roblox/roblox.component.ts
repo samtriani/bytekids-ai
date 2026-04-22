@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { ShellComponent, NavItem } from '../../../shared/shell/shell.component';
 
 @Component({ selector:'app-roblox', standalone:true, imports:[CommonModule, RouterLink, ShellComponent],
   templateUrl:'./roblox.component.html', styleUrls:['./roblox.component.scss']
 })
 export class RobloxComponent {
+  constructor(private router: Router) {}
+
+  toast = '';
+
   navItems: NavItem[] = [
     { label:'Mi Dashboard',  icon:'🏠', route:'/student' }, { label:'Mis Misiones', icon:'🎯', route:'/student/missions', badge:3 },
     { label:'Mi Progreso',   icon:'📈', route:'/student/progress' }, { label:'Logros', icon:'🏆', route:'/student/achievements' },
@@ -21,6 +25,18 @@ export class RobloxComponent {
     { title:'Diseño de mundos 3D', lessons:8, done:0, icon:'🌍', color:'#F59E0B', status:'Bloqueado' },
     { title:'Monetización básica', lessons:4, done:0, icon:'💰', color:'#EC4899', status:'Bloqueado' },
   ];
+
+  openModule(m: any) {
+    if (m.status === 'Bloqueado') return;
+    const action = m.status === 'Completado' ? 'repasar' : 'continuar';
+    const q = `Quiero ${action} el módulo "${m.title}" de Roblox Studio. ¿Puedes ayudarme?`;
+    this.router.navigate(['/student/ai-tutor'], { queryParams: { q } });
+  }
+
+  copySnippet(snippet: any) {
+    this.toast = `"${snippet.title}" copiado al portapapeles 📋`;
+    setTimeout(() => this.toast = '', 3000);
+  }
 
   luaSnippets = [
     { title:'Mover jugador', code:'local speed = 50\ngame.Players.LocalPlayer\n  .Character.Humanoid\n  .WalkSpeed = speed' },

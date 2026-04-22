@@ -42,9 +42,9 @@
           <div class="bar" [style.width]="m.progress+'%'" [style.background]="m.color"></div>
         </div>
         @if (!m.locked) {
-          <a [routerLink]="'/student/ai-tutor'" class="mc-btn" [style.background]="m.color">
-            {{ m.status==='Completado' ? '🔁 Repetir' : m.progress > 0 ? '▶ Continuar' : '🚀 Iniciar' }}
-          </a>
+          <button class="mc-btn" [style.background]="m.color" (click)="startMission(m)">
+            {{ m.status==='Completado' ? '🔁 Repasar' : m.progress > 0 ? '▶ Continuar' : '🚀 Iniciar' }}
+          </button>
         } @else {
           <div class="mc-btn locked-btn">🔒 Bloqueado</div>
         }
