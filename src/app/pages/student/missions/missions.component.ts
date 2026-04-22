@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { ShellComponent, NavItem } from '../../../shared/shell/shell.component';
+import { MissionStateService } from '../../../services/mission-state.service';
 
 @Component({ selector: 'app-missions', standalone: true, imports: [CommonModule, RouterLink, ShellComponent],
   templateUrl: './missions.component.html', styleUrls: ['./missions.component.scss'] })
 export class MissionsComponent {
+  constructor(private router: Router, private missionState: MissionStateService) {}
+
   navItems: NavItem[] = [
     { label:'Mi Dashboard', icon:'🏠', route:'/student' },
     { label:'Mis Misiones', icon:'🎯', route:'/student/missions', badge:3 },
@@ -31,9 +34,21 @@ export class MissionsComponent {
     { title:'Construye tu ciudad', subject:'Roblox Studio', xp:200, progress:30, status:'En progreso', icon:'🎮', color:'#10B981', difficulty:'Difícil', time:'2 hrs', locked:false },
   ];
 
+  getMission(m: any) {
+    const saved = this.missionState.get(m.title);
+    return saved ? { ...m, ...saved } : m;
+  }
+
   get filtered() {
-    if (this.activeFilter === 'Todas') return this.missions;
-    return this.missions.filter(m => m.subject.includes(this.activeFilter));
+    const base = this.activeFilter === 'Todas' ? this.missions : this.missions.filter(m => m.subject.includes(this.activeFilter));
+    return base.map(m => this.getMission(m));
   }
   setFilter(f: string) { this.activeFilter = f; }
+
+  startMission(m: { title: string; subject: string; status: string; locked: boolean }) {
+    if (m.locked) return;
+    const action = m.status === 'En progreso' ? 'Continuar' : m.status === 'Completado' ? 'Repasar' : 'Empezar';
+    const q = `${action} misión: "${m.title}" de ${m.subject}. Ayúdame con esta misión.`;
+    this.router.navigate(['/student/ai-tutor'], { queryParams: { q } });
+  }
 }

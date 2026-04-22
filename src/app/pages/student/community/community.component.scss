@@ -26,3 +26,22 @@
 .rank-xp  { font-size:.72rem; font-weight:800; color:var(--bk-yellow-light); white-space:nowrap; }
 .challenge-item { display:flex; align-items:center; gap:8px; font-size:.8rem; color:var(--bk-text-muted); font-weight:600; padding:6px; border-radius:8px; cursor:pointer; transition:background .2s; }
 .challenge-item:hover { background:var(--bk-bg-card2); color:var(--bk-text); }
+
+/* Nueva publicación form */
+.new-post-form { background:var(--bk-bg-card); border:1px solid var(--bk-border); border-radius:14px; padding:14px; }
+.npf-header { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.npf-subject { flex:1; background:var(--bk-bg-card2); border:1px solid var(--bk-border); border-radius:8px; padding:6px 10px; font-size:.8rem; font-weight:700; color:var(--bk-text); font-family:'Nunito',sans-serif; cursor:pointer; }
+.npf-cancel { width:28px; height:28px; border-radius:8px; border:1px solid var(--bk-border); background:transparent; cursor:pointer; font-size:.8rem; color:var(--bk-text-muted); }
+.npf-textarea { width:100%; background:var(--bk-bg-card2); border:1px solid var(--bk-border); border-radius:10px; padding:12px; font-size:.84rem; font-weight:600; color:var(--bk-text); font-family:'Nunito',sans-serif; resize:none; outline:none; box-sizing:border-box; }
+.npf-textarea:focus { border-color:rgba(6,182,212,.5); }
+.npf-footer { display:flex; justify-content:space-between; align-items:center; margin-top:10px; }
+.npf-hint { font-size:.72rem; color:var(--bk-text-dim); font-weight:600; }
+
+/* Comentarios */
+.comments-section { margin-top:12px; padding-top:12px; border-top:1px solid var(--bk-border); display:flex; flex-direction:column; gap:8px; }
+.comment-item { display:flex; align-items:flex-start; gap:8px; font-size:.8rem; color:var(--bk-text-muted); font-weight:600; line-height:1.4; }
+.comment-dot { width:6px; height:6px; border-radius:50%; background:var(--bk-border); margin-top:5px; flex-shrink:0; }
+
+/* Toast */
+.toast-msg { position:fixed; bottom:28px; left:50%; transform:translateX(-50%); background:var(--guinda); color:#fff; padding:10px 22px; border-radius:30px; font-weight:700; font-size:.85rem; z-index:9999; animation:fadeUp .3s ease; box-shadow:0 4px 20px rgba(0,0,0,0.3); white-space:nowrap; }
+@keyframes fadeUp { from { opacity:0; transform:translateX(-50%) translateY(10px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }

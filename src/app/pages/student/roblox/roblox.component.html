@@ -8,7 +8,7 @@
       <div class="rb-badge">🎮 Módulo especial</div>
       <h2 class="rb-title">Construye mundos.<br><span class="rb-accent">Programa el futuro.</span></h2>
       <p class="rb-desc">Aprende Lua — el mismo lenguaje que usan los developers reales de Roblox. ¡Crea y publica tus propios juegos!</p>
-      <a [routerLink]="'/student/ai-tutor'" class="bk-btn yellow" style="display:inline-flex; margin-top:12px">🤖 Pedir ayuda a ByteBot</a>
+      <a [routerLink]="'/student/ai-tutor'" [queryParams]="{q:'Quiero aprender Roblox Studio. ¿Por dónde empiezo?'}" class="bk-btn yellow" style="display:inline-flex; margin-top:12px">🤖 Pedir ayuda a ByteBot</a>
     </div>
     <div class="rb-stats">
       <div class="rb-stat"><span class="rb-sval">Nivel 2</span><span class="rb-slbl">Tu nivel actual</span></div>
@@ -23,7 +23,7 @@
       <div class="card-header"><span class="card-title">📚 Módulos del curso</span></div>
       <div class="modules-list">
         @for (m of modules; track m.title) {
-          <div class="module-row" [class.locked]="m.status==='Bloqueado'">
+          <div class="module-row" [class.locked]="m.status==='Bloqueado'" [class.clickable]="m.status!=='Bloqueado'" (click)="openModule(m)">
             <div class="mod-icon" [style.background]="m.color+'18'">{{ m.icon }}</div>
             <div class="mod-body">
               <div class="mod-top">
@@ -48,12 +48,19 @@
       <div class="snippets-list">
         @for (s of luaSnippets; track s.title) {
           <div class="snippet-item">
-            <div class="snip-title">{{ s.title }}</div>
+            <div class="snip-header">
+              <div class="snip-title">{{ s.title }}</div>
+              <button class="snip-copy" (click)="copySnippet(s)" title="Copiar código">📋</button>
+            </div>
             <pre class="snip-code">{{ s.code }}</pre>
           </div>
         }
-        <a [routerLink]="'/student/ai-tutor'" class="bk-btn purple" style="display:flex;justify-content:center;margin-top:8px;font-size:.83rem">🤖 Ver más con ByteBot</a>
+        <a [routerLink]="'/student/ai-tutor'" [queryParams]="{q:'Muéstrame más ejemplos de código Lua para Roblox Studio'}" class="bk-btn purple" style="display:flex;justify-content:center;margin-top:8px;font-size:.83rem">🤖 Ver más con ByteBot</a>
       </div>
     </div>
   </div>
 </div>
+
+@if (toast) {
+  <div class="roblox-toast">{{ toast }}</div>
+}
